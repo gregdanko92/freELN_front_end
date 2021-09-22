@@ -23,5 +23,13 @@ class ProgramModel {
             })
                 
     }
+    // static show(programId,teamId){
+    //      return fetch(`${url}/${programId}/${teamId}`)
+    //         .then((response)=> response.json())
+    //         .catch((err)=>{
+    //             console.log(err)
+    //         })
+                
+    // }
 }
 export default ProgramModel;

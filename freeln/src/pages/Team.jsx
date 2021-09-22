@@ -1,52 +1,77 @@
+import { program } from "@babel/types";
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import ProgramModel from '../models/ProgramModel'
 // import Program from "../components/Program";
 
+const url = 'http://localhost:4000/api/programs';
 function Team(props) {
-  const [exDirs, setExDirs] = useState([]);
+    const programId = props.match.params.programId
+    const teamId = props.match.params.teamId
+    const [programData, setProgramData] = useState({});
+  
   
   // takes in a callback function as first required argument
   useEffect(function(){
       console.log('useEffect was called');
-      fetchExDirs() //added this function, so that the games render when the page renders, not waiting for the button
-      return console.log('runs on unmount')
+    //   fetchProgramData() 
+      //added this function, so that the games render when the page renders, not waiting for the button
+      fetch(`${url}/${programId}/${teamId}`)
+            .then((response)=> response.json())
+            .then((data)=>{
+                setProgramData(data)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+    //   ProgramModel.show(props.match.params.programId).then((data) => {
+    //     setProgramData(data)
+    //   })
+      return console.log('runs on unmount', programData)
 
-  }, [])
+  }, [programId, teamId])
   
-  function fetchExDirs(){
-    
-    ProgramModel.all().then((data) => {
-      setExDirs(data)
-    })
 
-  }
-  
-  function generateExDirsList(exDirs) {
-    return exDirs.map((exDir, index) => (
-      <>
-      <Link to={`/programs/${props.match.params.programId}/${props.match.params.teamId}/${exDir._id}`} key={index}>
-          <h2>{exDir.name}</h2>
-      </Link>
-            <h3>{exDir.target}</h3>
-    </>
-        // <ul>
+
+     function generateExDirList(programData) {
+         if(programData.experimentDirectories){
+             
+                 return  programData.experimentDirectories.map((exDir, index) => (
+               <>
+               <Link to={`/programs/${props.match.params.programId}/${props.match.params.teamId}/${exDir._id}`} key={index}>
+                   <h2>{exDir.name}</h2>
+               </Link>
+             </>
+             ));
+         }else{
+            return
+         }
             
-        //     <h3>{program.target}</h3>
-        //     <p>{program._id}</p>
-        // </ul>
-
-    ));
+    console.log('program data', programData)
   }
-  
+
+function getTeamMembers(programData){
+    if(programData.members){
+        let teamMemberJSX = programData.members.map((member, index)=>{
+            return <div>
+                <h4>{member}</h4>
+            </div>
+        })
+        return teamMemberJSX
+
+    }else{
+        return
+    }
+}
   return (
     <div>
-      <h1>All Teams</h1>
-      <h2>{ exDirs.length }</h2>
-      <h2>
-            {generateExDirsList(exDirs)} 
-        </h2>
-     
+        <h1>{programData.name}</h1>
+        <h2>{getTeamMembers(programData)}</h2>
+        <h2>Experiment Directories</h2>
+        <h4>{generateExDirList(programData)}</h4>
+        <div>
+            
+        </div>
     </div>
   );
 }

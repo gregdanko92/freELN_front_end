@@ -22,7 +22,6 @@ function ProgramIndex(props) {
 
   }
   
-  
   function generateList(programs) {
     return programs.map((program, index) => (
       <>

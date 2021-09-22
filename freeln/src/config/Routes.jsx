@@ -12,9 +12,9 @@ function Routes(){
     return(
         <Switch>
           <Route path='/programs/:programId/:teamId/:exDir/:experimentId' component={Experiment}/>
-          <Route path='/programs/:programId/:teamId/:exDir' component={ExDir}/>
-          <Route path='/programs/:programId/:teamId' component={Team}/>
-          <Route path='/programs/:programId' component={Program}/>
+          <Route path='/programs/:programId/:teamId/:exDir' render={(props)=><ExDir {...props} />} component={ExDir}/>
+          <Route path='/programs/:programId/:teamId' render={(props)=><Team {...props} />} component={Team}/>
+          <Route path='/programs/:programId'render={(props)=><Program {...props}/>} component={Program}/>
           <Route path='/programs' component={ProgramIndex}/>
           <Route path='/' exact component={HomePage}/>
       </Switch>
