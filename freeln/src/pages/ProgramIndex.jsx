@@ -5,6 +5,8 @@ import ProgramModel from '../models/ProgramModel'
 
 function ProgramIndex(props) {
   const [programs, setPrograms] = useState([]);
+  const programId = props.match.params.programId
+  const teamId = props.match.params.teamId
   
   // takes in a callback function as first required argument
   useEffect(function(){
@@ -44,7 +46,11 @@ function ProgramIndex(props) {
       <h1>All Programs</h1>
       <h2>{ programs.length }</h2>
       {programs.length ? generateList(programs) : "Create a Program to get started"}
-     
+      <Link to={`/programs/create`}>
+          Add a new Program
+      </Link>
+      
+       
     </div>
   );
 }

@@ -59,6 +59,9 @@ function Program(props) {
         <div>
             {/* {getStakeholders(programData)} */}
         </div>
+        <Link to={`/programs/${programId}/create`}>
+          Add a new Team
+      </Link>
     </div>
   );
 }

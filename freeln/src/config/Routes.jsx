@@ -6,11 +6,17 @@ import Program from '../pages/Program'
 import Team from '../pages/Team'
 import ExDir from '../pages/ExDir'
 import Experiment from '../pages/Experiment'
+import CreateProgram from '../pages/CreateProgram'
+import CreateTeam from '../pages/CreateTeam'
+import CreateExDir from '../pages/CreateExDir'
 
 function Routes(){
   
     return(
-        <Switch>
+      <Switch>
+          <Route  path='/programs/:programId/:teamId/create' exact component={CreateExDir}/>
+          <Route path='/programs/:programId/create' exact component={CreateTeam}/>
+          <Route path='/programs/create' exact component={CreateProgram}/>
           <Route path='/programs/:programId/:teamId/:exDir/:experimentId' component={Experiment}/>
           <Route path='/programs/:programId/:teamId/:exDir' render={(props)=><ExDir {...props} />} component={ExDir}/>
           <Route path='/programs/:programId/:teamId' render={(props)=><Team {...props} />} component={Team}/>

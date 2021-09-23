@@ -14,15 +14,16 @@ function Team(props) {
   // takes in a callback function as first required argument
   useEffect(function(){
       console.log('useEffect was called');
-    //   fetchProgramData() 
+      //   fetchProgramData() 
       //added this function, so that the games render when the page renders, not waiting for the button
       fetch(`${url}/${programId}/${teamId}`)
-            .then((response)=> response.json())
-            .then((data)=>{
-                setProgramData(data)
-            })
-            .catch((err)=>{
-                console.log(err)
+      .then((response)=> response.json())
+      .then((data)=>{
+          setProgramData(data)
+          console.log(data, "The data")
+        })
+        .catch((err)=>{
+            console.log(err)
             })
     //   ProgramModel.show(props.match.params.programId).then((data) => {
     //     setProgramData(data)
@@ -34,6 +35,7 @@ function Team(props) {
 
 
      function generateExDirList(programData) {
+         console.log(programData)
          if(programData.experimentDirectories){
              
                  return  programData.experimentDirectories.map((exDir, index) => (
@@ -65,12 +67,15 @@ function getTeamMembers(programData){
 }
   return (
     <div>
+        <h1>Team Name:</h1>
         <h1>{programData.name}</h1>
         <h2>{getTeamMembers(programData)}</h2>
         <h2>Experiment Directories</h2>
         <h4>{generateExDirList(programData)}</h4>
         <div>
-            
+        <Link to={`/programs/${programId}/${teamId}/create`}>
+          Add a new experiment directory
+      </Link>
         </div>
     </div>
   );
