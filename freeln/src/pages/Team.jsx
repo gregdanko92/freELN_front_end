@@ -14,7 +14,7 @@ function Team(props) {
   
   // takes in a callback function as first required argument
   useEffect(function(){
-      console.log('useEffect was called');
+      console.log('useEffect was called in TeamJSX');
       //   fetchProgramData() 
       //added this function, so that the games render when the page renders, not waiting for the button
       fetch(`${url}/${programId}/${teamId}`)
@@ -32,14 +32,15 @@ function Team(props) {
     console.log(programData.text)
       return console.log('runs on unmount', programData)
 
-  }, [programId, teamId])
-
+  },[programId, teamId] )
+//[programId, teamId, ]
  
   return (
     <div>
         <h1>{programData.name}</h1>
         <h4>{programData.date}</h4>
         <p>{programData.content}</p>
+        <Link to={programData.file}>{programData.file}</Link>
         <div>{parse(String(programData.text))}</div>
         <div>
         <Link to={`/programs/${programId}/${teamId}/edit`}>

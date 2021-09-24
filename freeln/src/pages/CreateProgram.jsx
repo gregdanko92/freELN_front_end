@@ -44,23 +44,23 @@ class CreateProgram extends Component {
     console.log(this.state)
     return (
       <div >
-        <h2>Add a Program</h2>
+        <h2>Add a new Project</h2>
         <form 
         
         onSubmit={this.handleFormSubmit}>
-            <h2>Program Name</h2>
+            <h2>Project Name</h2>
           <input 
           type='text'
           value={this.state.name}
           onChange={this.handleNameChange}
           />
-          <h2>Add a Target</h2>
+          <h2>Project Description</h2>
           <input 
           type='text'
           value={this.state.target}
           onChange={this.handleTargetChange}
           />
-          <h2>Add stakeholders</h2>
+          <h2>Date assigned</h2>
           <input 
           type='text'
           value={this.state.stakeholders}

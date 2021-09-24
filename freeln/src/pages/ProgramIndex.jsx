@@ -57,9 +57,8 @@ function ProgramIndex(props) {
   
   return (
     <div>
-      <h1>All Projects</h1>
-      <h2>{ programs.length }</h2>
-      {programs.length ? generateList(programs) : "Create a Program to get started"}
+      <h1>Project Directories</h1>
+      {programs.length ? generateList(programs) : "Create a Project to get started"}
       <br/>
       <Link to={`/programs/create`}>
           Add a new Program

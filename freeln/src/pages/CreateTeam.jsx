@@ -4,6 +4,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Widget } from "@uploadcare/react-widget";
 
 
 class CreateTeam extends Component {
@@ -12,7 +13,8 @@ class CreateTeam extends Component {
     name: '',
     date: '',
     content:'',
-    text:''
+    text:'',
+    file:''
   }
 
   handleNameChange =(event) => {
@@ -32,6 +34,15 @@ class CreateTeam extends Component {
     console.log(this.state.text)
   }
 
+  handleFileUpload = (input: any) => {
+    this.setState({ file: input.cdnUrl });
+  }
+
+//   handleFileDelete = (event)=>{
+//       this.preventDefault()
+//       this.setState({file:''})
+//   }
+
   handleFormSubmit = (event) => {
     event.preventDefault() 
     console.log('form was submitted')
@@ -39,7 +50,9 @@ class CreateTeam extends Component {
     name: this.state.name,
     date: this.state.date,
     content: this.state.content,
-    text:this.state.text
+    text:this.state.text,
+    file:this.state.file
+    
     }).then((response)=>{
         this.props.history.push(`/programs/${this.props.match.params.programId}`)  
     }).catch(function(error){
@@ -95,9 +108,17 @@ class CreateTeam extends Component {
                     } }
                 />
             </div>
-          <input type='submit' />
+            
+          <input type='submit'  />
+          <p>
+            <label htmlFor='file'>Your file:</label>{' '}
+            <Widget 
+                publicKey='9bfccb6db4bc0a8cb27c' 
+                id='file'
+                onChange={this.handleFileUpload} />
+            </p>
+            {/* <button type="button" onClick={this.handleDeleteFile}>delete this file</button> */}
         </form>
-
         </div>
     );
   }

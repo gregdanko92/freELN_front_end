@@ -1,9 +1,10 @@
 import { Component } from 'react';
 import ProgramModel from '../models/ProgramModel';
 import axios from 'axios'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 
 class CreateTeam extends Component {
@@ -12,7 +13,8 @@ class CreateTeam extends Component {
     name: '',
     date: '',
     content:'',
-    text:''
+    text:'',
+    redirect:false
   }
 
   handleNameChange =(event) => {
@@ -42,14 +44,35 @@ class CreateTeam extends Component {
     content: this.state.content,
     text:this.state.text
     }).then((response)=>{
-        this.props.history.push(`/programs/${this.props.match.params.programId}`)  
+        console.log(response, 'RESPNSE')
+        // this.props.history.push(`/programs/${this.props.match.params.programId}`)  
+        this.setState({redirect:true})
     }).catch(function(error){
       console.log(error)
     })
     
   }
+  componentDidMount = ()=>{
+      //api call here
+      axios.get(`http://localhost:4000/api/programs/${this.props.match.params.programId}/${this.props.match.params.teamId}/edit`)
+      .then((response)=>{
+          console.log(response)
+          this.setState({
+              content:response.data.content,
+              date:response.data.date,
+              name:response.data.name,
+              text:response.data.text
+        })
+
+          })
+        }
+      
   
+
   render() {
+      if (this.state.redirect){
+          return <Redirect to={`/programs/${this.props.match.params.programId}/${this.props.match.params.teamId}`}/>
+      }
     console.log(this.state)
     return (
       <div >
@@ -78,7 +101,7 @@ class CreateTeam extends Component {
                 <h2>Using CKEditor 5 build in React</h2>
                 <CKEditor
                     editor={ ClassicEditor }
-                    data="<p>Hello from CKEditor 5!</p>"
+                    data={this.state.text}
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );
