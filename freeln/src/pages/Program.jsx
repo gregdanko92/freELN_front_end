@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import ProgramModel from '../models/ProgramModel'
 // import Program from "../components/Program";
+import axios from 'axios'
 
 const url = 'http://localhost:4000/api/programs';
 function Program(props) {
@@ -31,7 +32,15 @@ function Program(props) {
   
 //   function fetchProgramData(){
 //   }
-  
+
+function handleDelete(id){
+    // const newTeams = programData.filter((team)=>team._id !==id)
+    // setProgramData(newTeams)
+    // console.log('delete clicked')
+    // console.log(id)
+    axios.delete(`http://localhost:4000/api/programs/${programId}/${id}`)
+    window.location.reload(false); 
+   }
      function generateTeamsList(programData) {
          if(programData.teams){
                  return  programData.teams.map((team, index) => (
@@ -39,6 +48,8 @@ function Program(props) {
                <Link to={`/programs/${props.match.params.programId}/${team._id}`} key={index}>
                    <h2>{team.name}</h2>
                </Link>
+               <button
+            onClick={()=>handleDelete(team._id)}>Delete</button>
              </>
              ));
          }else{
@@ -52,7 +63,7 @@ function Program(props) {
     <div>
         <h1>{programData.name}</h1>
         <h3>{programData.target}</h3>
-        <h2>Teams List</h2>
+        <h2>Experiment Directory</h2>
         <h2>
             {generateTeamsList(programData)}
         </h2>
@@ -60,7 +71,7 @@ function Program(props) {
             {/* {getStakeholders(programData)} */}
         </div>
         <Link to={`/programs/${programId}/create`}>
-          Add a new Team
+          Add a new Experiment
       </Link>
     </div>
   );

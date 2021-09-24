@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import ProgramModel from '../models/ProgramModel'
 // import Program from "../components/Program";
+import parse from 'html-react-parser'
 
 const url = 'http://localhost:4000/api/programs';
 function Team(props) {
@@ -28,55 +29,25 @@ function Team(props) {
     //   ProgramModel.show(props.match.params.programId).then((data) => {
     //     setProgramData(data)
     //   })
+    console.log(programData.text)
       return console.log('runs on unmount', programData)
 
   }, [programId, teamId])
-  
 
-
-     function generateExDirList(programData) {
-         console.log(programData)
-         if(programData.experimentDirectories){
-             
-                 return  programData.experimentDirectories.map((exDir, index) => (
-               <>
-               <Link to={`/programs/${props.match.params.programId}/${props.match.params.teamId}/${exDir._id}`} key={index}>
-                   <h2>{exDir.name}</h2>
-               </Link>
-             </>
-             ));
-         }else{
-            return
-         }
-            
-    console.log('program data', programData)
-  }
-
-function getTeamMembers(programData){
-    if(programData.members){
-        let teamMemberJSX = programData.members.map((member, index)=>{
-            return <div>
-                <h4>{member}</h4>
-            </div>
-        })
-        return teamMemberJSX
-
-    }else{
-        return
-    }
-}
+ 
   return (
     <div>
-        <h1>Team Name:</h1>
         <h1>{programData.name}</h1>
-        <h2>{getTeamMembers(programData)}</h2>
-        <h2>Experiment Directories</h2>
-        <h4>{generateExDirList(programData)}</h4>
+        <h4>{programData.date}</h4>
+        <p>{programData.content}</p>
+        <div>{parse(String(programData.text))}</div>
         <div>
-        <Link to={`/programs/${programId}/${teamId}/create`}>
-          Add a new experiment directory
+        <Link to={`/programs/${programId}/${teamId}/edit`}>
+          Edit
       </Link>
-        </div>
+      </div>
+        
+
     </div>
   );
 }

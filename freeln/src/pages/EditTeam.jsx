@@ -35,7 +35,8 @@ class CreateTeam extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault() 
     console.log('form was submitted')
-    axios.post(`http://localhost:4000/api/programs/${this.props.match.params.programId}`, {
+    //need to change the post route to put?
+    axios.put(`http://localhost:4000/api/programs/${this.props.match.params.programId}/${this.props.match.params.teamId}`, {
     name: this.state.name,
     date: this.state.date,
     content: this.state.content,
@@ -52,7 +53,7 @@ class CreateTeam extends Component {
     console.log(this.state)
     return (
       <div >
-        <h2>Add an Experiment</h2>
+        <h2>Edit the Experiment</h2>
         <form 
         onSubmit={this.handleFormSubmit}>
             <h2>Experiment Name</h2>
