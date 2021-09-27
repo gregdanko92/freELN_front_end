@@ -4,6 +4,10 @@ import axios from 'axios'
 import { withRouter, Redirect } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Header from '../components/Header'
+import NavTeam from '../components/NavTeam'
+import { Widget } from "@uploadcare/react-widget";
+
 
 
 
@@ -14,6 +18,7 @@ class CreateTeam extends Component {
     date: '',
     content:'',
     text:'',
+    file:'',
     redirect:false
   }
 
@@ -33,6 +38,9 @@ class CreateTeam extends Component {
     this.setState({text:event.target.value})
     console.log(this.state.text)
   }
+  handleFileUpload = (input: any) => {
+    this.setState({ file: input.cdnUrl });
+  }
 
   handleFormSubmit = (event) => {
     event.preventDefault() 
@@ -42,7 +50,9 @@ class CreateTeam extends Component {
     name: this.state.name,
     date: this.state.date,
     content: this.state.content,
-    text:this.state.text
+    text:this.state.text,
+    file:this.state.file
+
     }).then((response)=>{
         console.log(response, 'RESPNSE')
         // this.props.history.push(`/programs/${this.props.match.params.programId}`)  
@@ -61,7 +71,8 @@ class CreateTeam extends Component {
               content:response.data.content,
               date:response.data.date,
               name:response.data.name,
-              text:response.data.text
+              text:response.data.text,
+              file:response.data.file
         })
 
           })
@@ -75,22 +86,34 @@ class CreateTeam extends Component {
       }
     console.log(this.state)
     return (
-      <div >
-        <h2>Edit the Experiment</h2>
-        <form 
+      <div className='create-a-program-page'>
+          <div className='header-nav-projects'>
+          <Header/>
+          <NavTeam/>
+        </div>
+        <div className='create-a-project-headline'>
+
+        <h3>Edit the Experiment</h3>
+        </div>
+
+        <form className='form-element-experiment'
         onSubmit={this.handleFormSubmit}>
-            <h2>Experiment Name</h2>
+        <div  className='form-element-child'>
+
+        <h2>Experiment Name</h2>
           <input 
           type='text'
           value={this.state.name}
           onChange={this.handleNameChange}
           />
+
           <h2>Experiment Date</h2>
           <input 
           type='text'
           value={this.state.date}
           onChange={this.handleDateChange}
           />
+
           <h2>Content</h2>
           <input 
           type='text'
@@ -119,9 +142,20 @@ class CreateTeam extends Component {
                     } }
                 />
             </div>
-          <input type='submit' />
-        </form>
+        </div>
+        <p>
+            <label htmlFor='file'>Your file:</label>{' '}
+            <Widget 
+                
+                publicKey='9bfccb6db4bc0a8cb27c' 
+                id='file'
+                onChange={this.handleFileUpload} />
+            </p>
 
+          <input 
+          className='form-element-child-button'
+          type='submit' />
+        </form>
         </div>
     );
   }

@@ -8,8 +8,6 @@ import Routes from './config/Routes';
 function App() {
   return (
     <div >
-      <Header/>
-      
       <Routes/>
       
     </div>

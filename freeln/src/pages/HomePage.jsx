@@ -1,10 +1,25 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function HomePage(){
     return (
-        <div>
-        <h1>hello</h1>
+        <div className='homepage'>
+
+            <div className='homepage-headline'>f r e E L N</div>
+            <div className='homepage-sub-headline'>the free electronic lab notebook resource</div>
+            <div className= 'homepage-main'>
+                    <Link className='homepage-main-child' to='/programs'>  
+                        Programs   
+                    </Link>
+
+                    <Link className='homepage-main-child' to='/programs'>
+                        Protocols
+                    </Link>
+            </div>
         </div>
+
+        
+        
     )
 }
 

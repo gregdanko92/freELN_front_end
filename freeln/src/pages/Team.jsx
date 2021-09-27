@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ProgramModel from '../models/ProgramModel'
 // import Program from "../components/Program";
 import parse from 'html-react-parser'
+import NavTeam from "../components/NavTeam";
+import Header from "../components/Header";
 
 const url = 'http://localhost:4000/api/programs';
 function Team(props) {
@@ -37,17 +39,39 @@ function Team(props) {
  
   return (
     <div>
-        <h1>{programData.name}</h1>
-        <h4>{programData.date}</h4>
-        <p>{programData.content}</p>
-        <Link to={programData.file}>{programData.file}</Link>
+      <div className='header-nav-projects'>
+        <Header/>
+        <NavTeam/>
+      </div>
+      <div className='project-directories'>
+        <div className='project-directories-headline'>
+          <h3>{programData.name}</h3>
+          </div>
+
+          <div className='project-details'>
+            
+          </div>
+
+      <div className='experiment-directories-main'>
+        {/* <h4>Description: {programData.content}</h4> */}
         <div>{parse(String(programData.text))}</div>
+
         <div>
-        <Link to={`/programs/${programId}/${teamId}/edit`}>
+        <h4>Files</h4>
+        <Link to={programData.file}>{programData.file}</Link>
+      
+        <h4>Experiment performed on {programData.date}</h4>
+        
+
+        <Link className="add-a-project-button
+        " to={`/programs/${programId}/${teamId}/edit`}>
           Edit
       </Link>
       </div>
+
+      </div>
         
+      </div>
 
     </div>
   );

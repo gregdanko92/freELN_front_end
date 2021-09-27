@@ -3,6 +3,10 @@ import axios from "axios";
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import ProgramModel from '../models/ProgramModel'
+import Header from '../components/Header'
+import NavProgram from "../components/NavProgram";
+
+
 
 // import Program from "../components/Program";
 
@@ -32,39 +36,72 @@ function ProgramIndex(props) {
    console.log('delete clicked')
    console.log(id)
    axios.delete(`http://localhost:4000/api/programs/${id}`)
+   window.location.reload(false);
   }
 
 
   
   function generateList(programs) {
     return programs.map((program, index) => (
-      <>
-      <Link to={`/programs/${program._id}`} key={index}>
-          <h2>{program.name}</h2>
+      
+      <Link class='project-directories-main-child'to={`/programs/${program._id}`} key={index}>
+        <div className='folder-delete'>
+          
+          <img className='folder-icon' src="https://img.icons8.com/ios-filled/50/000000/folder-invoices--v2.png"/>
+          
+          <button className='project-directories-delete-button'
+              onClick={()=>handleDelete(program._id)}>
+                <img src="https://img.icons8.com/ios/50/000000/close-window.png"/>
+          </button>
+          
+        </div>
+        <div className='title-date'>
+
+          <div className='project-title'>
+            {program.name}
+          </div>
+
+            <div className='project-date'>
+              {program.date}
+            </div>
+
+        </div>
+
+
+
+            <div className='project-description'>
+              {program.description}
+            </div>
+
+            <br />
+
+          
       </Link>
-        <h3>{program.target}</h3>
-        <button
-            onClick={()=>handleDelete(program._id)}>Delete</button>
-    </>
-        // <ul>
-            
-        //     <h3>{program.target}</h3>
-        //     <p>{program._id}</p>
-        // </ul>
 
     ));
   }
   
   return (
     <div>
-      <h1>Project Directories</h1>
-      {programs.length ? generateList(programs) : "Create a Project to get started"}
-      <br/>
-      <Link to={`/programs/create`}>
-          Add a new Program
-      </Link>
-      
-       
+      <div className='header-nav-projects'>
+        <Header/>
+        <NavProgram/>
+      </div>
+      <div className='project-directories'>
+          <div className='project-directories-headline'>
+          Project Directories
+          </div>
+
+        <Link className='add-a-project-button'to={`/programs/create`}>
+            Create a new project 
+        </Link>
+        
+
+        <div className='project-directories-main'>
+          {programs.length ? generateList(programs) : "Create a Project to get started"}
+        </div>
+        
+      </div>
     </div>
   );
 }

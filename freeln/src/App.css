@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -37,7 +38,268 @@
   }
 }
 
+
+
+/* HomePage CSS */
+
+
+
+
+.homepage{
+  background-color:#282c34;
+  height:100%;
+  overflow:hidden;
+}
+.homepage-headline{
+  text-align:center;
+  font-size:100px;
+  color:whitesmoke;
+}
+.homepage-sub-headline {
+  color:whitesmoke;
+  text-align:center;
+  margin-top:2.5%;
+}
+.homepage-main{
+  background-color:azure;
+  display:flex;
+  margin:5% 15% 5% 15%;
+  padding:5%;
+  border-radius:15px;
+}
+.homepage-main-child{
+  background-color:rgb(140, 184, 184);
+  height:25rem;
+  width:25rem;
+  margin:2.5%;
+  margin-top:0.5%;
+  flex:1;
+  color:white;
+  text-decoration:none;
+  font-size:50px;
+  font-family:Helvetica, sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:15px;
+  transition:1s;
+}
+.homepage-main-child:hover{
+  background-color:slategrey;
+  transition:1s;
+}
+
+/* Programs CSS */
+
+.header-nav-projects{
+display:flex;
+justify-content:space-between;
+background-color:white;
+}
+
+.project-directories{
+  background-color:#282c34;
+  height:100%;
+  overflow:hidden;
+}
+
+.project-directories-headline{
+  text-align:center;
+  font-size:70px;
+  font-weight: bold;
+  color:whitesmoke;
+  margin:2% 0% 2% 0%;
+
+}
+.project-directories-main-and-create{
+
+}
+.project-directories-main{
+  background-color:azure;
+  display:flex;
+  flex-flow:row wrap;
+  margin:3% 15% 5% 15%;
+  padding:5%;
+  border-radius:10px;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+}
+.project-directories-main-child{
+  background-color:rgb(140, 184, 184);
+  min-height:200px;
+  min-width:200px;
+  margin:2.5%;
+  margin-top:0.5%;
+  flex:1;
+  flex-flow: column ;
+  color:white;
+  text-decoration:none;
+  font-size:1.25rem;
+  font-family: Helvetica, sans-serif;
+  display:flex;
+  align-items: center;
+  /* justify-content: space-around; */
+  border-radius:10px;
+  transition:1s;
+}
+.project-directories-main-child:hover{
+background-color:slategray;
+transition:1s;
+}
+.project-directories-delete-button{
+  border:none;
+  background-color:transparent;
+  cursor:crosshair;
+  padding-left:9.5rem;
+}
+.folder-delete{
+  display: flex;
+  justify-content:space-around;
+  padding-top:1rem
+}
+.project-description{
+  font-size:0.75rem;
+  padding-left:0.5rem;
+  padding-right:0.5rem;
+  text-align:left;
+}
+.project-title{
+  font-size:1.15rem;
+  font-weight:bold;
+  padding-left:0.5rem; 
+  
+}
+.project-date{
+  font-size:0.75rem;
+  right:0;
+  padding-bottom:2rem;
+  padding-left:3rem;
+  padding-right:1rem;
+  
+}
+.title-date{
+  display: flex;
+  justify-content:space-around;
+  padding-top:1rem;
+  padding-left:-0.5rem;
+  padding-right:-0.5rem;
+}
+.add-a-project-button{
+  text-decoration:none;
+  color:ivory;
+  font-size:70px;
+  font-size:1rem;
+  background-color:rgb(140, 184, 184);  border-radius:70px;
+  padding:1rem;
+  margin:10rem;
+  margin-left:45%;
+  margin-top:15rem;
+  transition:1s;
+}
+.add-a-project-button:hover{
+  background-color:slategray;
+  transition:1s;
+}
+
+/* Create a Program/Project/ CSS */
+
+.create-a-program-page{
+  background-color:#282c34;
+  height:100vh;
+  }
+.create-a-project-headline{
+  text-align:center;
+  font-size:30px;
+  color:whitesmoke;
+  margin:2% 0% 2% 0%;
+}
+.form-element{
+  background-color:azure;
+  display:flex;
+  flex-flow:column;
+  margin:5% 25% 5% 25%;
+  padding-top:1.5%;
+  border-radius:10px;
+  /* display:grid; */
+  /* grid-template-columns: 1fr 1fr 1fr ; */
+  align-items: center;
+  text-align:center;
+  overflow:hidden;
+}
+.form-element-child{
+color:#282c34;
+padding:1rem;
+margin:1rem;
+background-color:rgb(140, 184, 184);border-radius:10px;
+}
+.form-element-child-button{
+padding:1rem;
+margin:1rem;
+background-color:rgb(140, 184, 184);border-radius:10px;
+border:none;
+color:ivory;
+font-size:7rem;
+font-size:1rem;
+border-radius:70px;
+padding:1rem;
+transition:1s;
+}
+
+input{
+  border:none;
+  border-radius:10px;
+  padding:0.25em;
+  text-align:center;
+}
+.description-input{
+  height:1.5em;
+  width:40em;
+  text-align:left;
+}
+
+input:focus{
+  outline:none;
+  background-color:lightsteelblue
+}
+
+/* Program/Project show page, list all experiments/'teams' */
+
+.project-details{
+  color:whitesmoke;
+  margin:1rem
+}
+
+/* Experiment/Team Create Page */
 .editor{
   margin-right:10em;
+  border:none;
+  border-radius:10px;
+  
+}
+.form-element-experiment{
+  background-color:azure;
+  display:flex;
+  flex-flow:column;
+  margin:1% 25% 10% 25%;
+  padding-top:1.5%;
+  border-radius:10px;
+  /* display:grid; */
+  /* grid-template-columns: 1fr 1fr 1fr ; */
+  align-items: center;
+  text-align:center;
+}
 
+/* Experiment/Team show page */
+
+
+
+.experiment-directories-main{
+  background-color:azure;
+  display:flex;
+  flex-direction:column;
+  margin:3% 15% 5% 15%;
+  padding:5%;
+  border-radius:10px;
+  display:flex;
+  /* grid-template-columns: 1fr 1fr 1fr ; */
 }

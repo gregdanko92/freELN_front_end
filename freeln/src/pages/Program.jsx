@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import ProgramModel from '../models/ProgramModel'
 // import Program from "../components/Program";
 import axios from 'axios'
+import NavProgram from "../components/NavProgram";
+import Header from "../components/Header";
 
 const url = 'http://localhost:4000/api/programs';
 function Program(props) {
@@ -26,7 +28,7 @@ function Program(props) {
     //   ProgramModel.show(props.match.params.programId).then((data) => {
     //     setProgramData(data)
     //   })
-      return console.log('runs on unmount')
+      return console.log('runs on unmount', programData)
 
   }, [programId])
   
@@ -44,13 +46,42 @@ function handleDelete(id){
      function generateTeamsList(programData) {
          if(programData.teams){
                  return  programData.teams.map((team, index) => (
-               <>
-               <Link to={`/programs/${props.match.params.programId}/${team._id}`} key={index}>
-                   <h2>{team.name}</h2>
-               </Link>
-               <button
-            onClick={()=>handleDelete(team._id)}>Delete</button>
-             </>
+               
+
+
+               
+
+               <Link className='project-directories-main-child' to={`/programs/${props.match.params.programId}/${team._id}`} key={index}>
+               <div className='folder-delete'>
+          
+                <img className='folder-icon' src="https://img.icons8.com/ios-filled/50/000000/thin-test-tube.png"/>
+          
+                <button className='project-directories-delete-button'
+                    onClick={()=>handleDelete(team._id)}>
+                      <img src="https://img.icons8.com/ios/50/000000/close-window.png"/>
+                </button>
+          
+                </div>
+
+                <div className='title-date'>
+
+                <div className='project-title'>
+                  {team.name}
+                </div>
+
+                <div className='project-date'>
+                  {team.date}
+                </div>
+
+                </div>
+
+
+
+                <div className='project-description'>
+                  {team.content}
+                </div>
+              </Link>
+               
              ));
          }else{
             return
@@ -61,18 +92,28 @@ function handleDelete(id){
   
   return (
     <div>
-        <h1>{programData.name}</h1>
-        <h3>{programData.target}</h3>
-        <h2>Experiment Directory</h2>
-        <h2>
-            {generateTeamsList(programData)}
-        </h2>
-        <div>
-            {/* {getStakeholders(programData)} */}
-        </div>
-        <Link to={`/programs/${programId}/create`}>
-          Add a new Experiment
-      </Link>
+      <div className='header-nav-projects'>
+        <Header/>
+        <NavProgram/>
+      </div>
+
+      <div className='project-directories'>
+          <div className='project-directories-headline'>{programData.name}
+          </div>
+          <div className='project-details'>
+            <p>Description: {programData.description}</p>
+            <p>Project initiated on {programData.date}</p>
+          </div>
+
+          <Link className='add-a-project-button' to={`/programs/${programId}/create`}>
+            Add a new Experiment
+        </Link>
+          
+          <div className='project-directories-main'>
+              {generateTeamsList(programData)}
+          </div>
+          
+      </div>
     </div>
   );
 }
