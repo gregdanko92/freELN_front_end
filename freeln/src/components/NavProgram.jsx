@@ -6,9 +6,9 @@ function NavProgram(props){
     return(
         <div className='nav-div'>
             
-            <Link to='/'>Home</Link>
+            <Link className='nav-div-link' to='/'>Home</Link>
             <br />
-            <Link to='/programs'>All Projects</Link>
+            <Link className='nav-div-link' to='/programs'>All Projects</Link>
         </div>
     )
 

@@ -14,20 +14,7 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -51,9 +38,11 @@
   overflow:hidden;
 }
 .homepage-headline{
+  margin-top:0.5em;
   text-align:center;
   font-size:100px;
   color:whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .homepage-sub-headline {
   color:whitesmoke;
@@ -94,7 +83,9 @@
 .header-nav-projects{
 display:flex;
 justify-content:space-between;
-background-color:white;
+background-color:azure;
+padding-left:1em;
+padding-right:1em;
 }
 
 .project-directories{
@@ -302,4 +293,29 @@ input:focus{
   border-radius:10px;
   display:flex;
   /* grid-template-columns: 1fr 1fr 1fr ; */
+}
+
+/* Header styling */
+.header-nav-projects{
+
+}
+
+.nav-div{
+  text-decoration: none;
+  margin-top:0.65em;
+  background-color:rgb(140, 184, 184);
+  margin-bottom:0.75em;
+  padding:10px;
+  padding-top:7px;
+  border-radius:10px;
+}
+.nav-div-link{
+  text-decoration:none;
+  color:white;
+  transition:1.25s;
+}
+.nav-div-link:hover{
+  text-decoration:none;
+  color:#282c34;
+  transition:1.25s;
 }

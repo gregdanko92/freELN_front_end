@@ -12,7 +12,7 @@ function HomePage(){
                         Programs   
                     </Link>
 
-                    <Link className='homepage-main-child' to='/programs'>
+                    <Link className='homepage-main-child' to='/'>
                         Protocols
                     </Link>
             </div>
