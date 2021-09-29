@@ -1,4 +1,4 @@
-const url = 'http://localhost:4000/api/programs';
+const url = 'https://freeln.herokuapp.com/api/programs';
 //store logic to make api calls (fetch/axios here)
 class ProgramModel {
     static all() {
