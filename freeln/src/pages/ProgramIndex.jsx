@@ -42,6 +42,7 @@ function ProgramIndex(props) {
 
   
   function generateList(programs) {
+    
     return programs.map((program, index) => (
       
       <Link class='project-directories-main-child'to={`/programs/${program._id}`} key={index}>
@@ -98,8 +99,11 @@ function ProgramIndex(props) {
         
 
         <div className='project-directories-main'>
-          {programs.length ? generateList(programs) : "Create a Project to get started"}
+          {programs? generateList(programs) : "Create a Project to get started"}
+          {/* {generateList(programs)} */}
         </div>
+
+
         
       </div>
     </div>

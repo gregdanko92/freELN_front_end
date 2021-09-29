@@ -128,7 +128,7 @@ padding-right:1em;
   font-size:1.25rem;
   font-family: Helvetica, sans-serif;
   display:flex;
-  align-items: center;
+  align-items: left;
   /* justify-content: space-around; */
   border-radius:10px;
   transition:1s;
@@ -157,7 +157,7 @@ transition:1s;
 .project-title{
   font-size:1.15rem;
   font-weight:bold;
-  padding-left:0.5rem; 
+
   
 }
 .project-date{
@@ -196,7 +196,9 @@ transition:1s;
 
 .create-a-program-page{
   background-color:#282c34;
-  height:100vh;
+  
+  padding-bottom:1.5em;
+  
   }
 .create-a-project-headline{
   text-align:center;
@@ -255,9 +257,20 @@ input:focus{
 
 /* Program/Project show page, list all experiments/'teams' */
 
+.project-directories-show{
+  background-color:#282c34;
+  height:100%;
+  overflow:hidden;
+  padding-bottom:10em;
+  margin-bottom:0em;
+  
+}
+
+
 .project-details{
   color:whitesmoke;
-  margin:1rem
+  margin:1rem;
+  
 }
 
 /* Experiment/Team Create Page */
@@ -318,4 +331,11 @@ input:focus{
   text-decoration:none;
   color:#282c34;
   transition:1.25s;
+}
+
+.teams-show{
+  background-color:#282c34;
+  height:100%;
+  overflow:hidden;
+  padding-bottom:7.5em
 }

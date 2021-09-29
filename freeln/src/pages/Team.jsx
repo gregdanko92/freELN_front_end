@@ -43,7 +43,7 @@ function Team(props) {
         <Header/>
         <NavTeam/>
       </div>
-      <div className='project-directories'>
+      <div className='teams-show'>
         <div className='project-directories-headline'>
           <h3>{programData.name}</h3>
           </div>

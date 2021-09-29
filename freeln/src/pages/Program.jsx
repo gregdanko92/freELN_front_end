@@ -97,7 +97,7 @@ function handleDelete(id){
         <NavProgram/>
       </div>
 
-      <div className='project-directories'>
+      <div className='project-directories-show'>
           <div className='project-directories-headline'>{programData.name}
           </div>
           <div className='project-details'>
